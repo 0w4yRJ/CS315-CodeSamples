@@ -14,10 +14,11 @@ public class Employees {
 
         do {
             System.out.println("""
+                    \n
                     What would you like to do?
                     [1] Create an employee
                     [2] Display all employees
-                    [3] Update employee details
+                    [3] Update employee salary
                     [4] Delete employee
                     [5] Exit
                     """);
@@ -48,7 +49,7 @@ public class Employees {
     }
 
     public static void createEmployee() {
-        System.out.println("~ ~ Creating an employee ~ ~");
+        System.out.println("\n~ ~ Creating an employee ~ ~");
 
         System.out.print("Enter the employee's full name: ");
         String name = new Scanner(System.in).nextLine();
@@ -68,7 +69,7 @@ public class Employees {
     }
 
     public static void displayEmployees() {
-        System.out.println("~ ~ Employees ~ ~");
+        System.out.println("\n~ ~ Employees ~ ~");
         try (CallableStatement statement = connection.prepareCall("{CALL get_employees()}");
              ResultSet employeeList = statement.executeQuery();
         ) {
@@ -92,7 +93,7 @@ public class Employees {
 
     public static void updateSalary() {
         try (CallableStatement statement = connection.prepareCall("{CALL update_salary(?,?)}")) {
-
+            System.out.println("\n~ ~ Updating employee's salary ~ ~");
             System.out.print("Enter the employee's ID: ");
             String id = new Scanner(System.in).nextLine();
 
@@ -111,6 +112,7 @@ public class Employees {
     public static void deleteEmployee() {
         try (CallableStatement statement = connection.prepareCall("{CALL delete_employee(?)}")) {
 
+            System.out.println("\n~ ~ Deleting an employee record ~ ~");
             System.out.print("Enter the employee's ID: ");
             String id = new Scanner(System.in).nextLine();
 
@@ -122,7 +124,6 @@ public class Employees {
             throw new RuntimeException(e);
         }
     }
-
 
     public static void connectToDB() {
         try {
