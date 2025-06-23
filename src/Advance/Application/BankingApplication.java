@@ -102,6 +102,7 @@ public class BankingApplication {
                     System.out.println("Please select a valid option (1-8).");
             }
         }
+
         // Shut down the interest thread before exiting.
         interestThread.stopInterest();
         try {
